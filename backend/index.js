@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 })
 
 //available routes
-app.use('/api/auth', authroute)
+app.use('/api/auth/createuser', authroute)
 app.use('/api/notes', notesroute)
 
 
