@@ -1,11 +1,13 @@
 const connectToMongo = require('./db')
 connectToMongo()
-
+const bodyParser = require('body-parser')
 const express = require('express')
 const app = express();
 const port = 5500;
 const authroute = require('./routes/auth')
 const notesroute = require('./routes/note')
+
+app.use(bodyParser.json())
 
 //middleware
 app.use(express.json());
