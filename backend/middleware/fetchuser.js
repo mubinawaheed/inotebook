@@ -5,9 +5,9 @@ const fetchuser = (req, res, next) => {
 
     //get the user from jwt token and append id to request object
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzNDZlZmJiOTc4ZTc5ODczNjA2YzVlIn0sImlhdCI6MTY2NDQzOTI2OH0.D05vBUwBJmo205OHu1X5Tg37XNs0JgJ2_MKMCtFdHfk"
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzNDgzMGIyNDcwZTY1MmY0YjI1ZjdlIn0sImlhdCI6MTY2NDQ1NzMyMn0.fJ4v96uET_dzEBOwcYpNagwuVz_JkC1ibLZKD6bCGJ8"
         // const token = req.header('auth-token')
-    console.log(token)
+        // console.log(token)
     if (!token) {
         res.status(401).send({ error: 'access denied' })
     }

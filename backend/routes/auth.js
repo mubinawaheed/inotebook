@@ -70,8 +70,8 @@ router.get('/login', [body('email', "enter a valid email").isEmail(), body('pass
 
         req.body = {
 
-            email: "hashir@gmail.com",
-            password: "startrek"
+            email: "hina@gmail.com",
+            password: "hina76"
         }
         const login_errors = validationResult(req.body);
         if (!login_errors.isEmpty()) {
