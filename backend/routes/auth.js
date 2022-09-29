@@ -111,8 +111,6 @@ router.get('/login', [body('email', "enter a valid email").isEmail(), body('pass
 router.get('/getuser', fetchuser, async(req, res) => {
 
     try {
-        // req.get('auth-token') = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzNDZlZmJiOTc4ZTc5ODczNjA2YzVlIn0sImlhdCI6MTY2NDQzOTI2OH0.D05vBUwBJmo205OHu1X5Tg37XNs0JgJ2_MKMCtFdHfk"
-
         const userid = req.user.id;
         const user = await User.findById(userid).select('-password')
         res.send(user)
