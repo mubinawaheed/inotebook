@@ -9,10 +9,13 @@ import {
 import Navbar from './components/Navbar'
 import Home from './components/home'
 import About from './components/about'
+import Note_state from './context/notes/notes_states';
 
 function App() {
   return (
     <>
+    <Note_state>
+
       <Router>
         <Navbar />
         <Routes>
@@ -29,6 +32,7 @@ function App() {
 
       </Router>
 
+    </Note_state>
     </>
   );
 }
