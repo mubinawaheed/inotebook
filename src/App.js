@@ -18,6 +18,8 @@ function App() {
 
       <Router>
         <Navbar />
+        <div className="container">
+
         <Routes>
 
           <Route exact path="/about" element={<About/>}>
@@ -30,6 +32,7 @@ function App() {
 
         </Routes>
 
+        </div>
       </Router>
 
     </Note_state>
