@@ -1,16 +1,27 @@
 import React from "react";
-
+import { useContext } from "react";
+import note_context from "../context/notes/notes_Context";
 export default function Home() {
+
+  const context = useContext(note_context)
+  const { notes, setnotes } = context
+
+  const mystile = {
+    width: "60%"
+  }
+
+
   return (
     <>
       <div className="container">
         <h2 className="my-3">Add a Note</h2>
         <form>
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
+            <label htmlFor="exampleInputEmail1" className="form-label" >
               Email address
             </label>
             <input
+              style={mystile}
               type="email"
               className="form-control"
               id="exampleInputEmail1"
@@ -25,6 +36,7 @@ export default function Home() {
               Password
             </label>
             <input
+              style={mystile}
               type="password"
               className="form-control"
               id="exampleInputPassword1"
@@ -32,7 +44,7 @@ export default function Home() {
           </div>
           <div id="passwordHelpBlock" className="my-2 form-text">
             Your password must be 8-20 characters long, contain letters and
-            numbers, and must not contain spaces, special characters, or emoji.
+            numbers.
           </div>
           <div className="mb-3 form-check">
             <input
@@ -48,6 +60,12 @@ export default function Home() {
             Submit
           </button>
         </form>
+      </div>
+      <h3 className="my-3">Your Notes</h3>
+      <div className="container">
+        {notes.map((note) => {
+          return note.title;
+        })}
       </div>
     </>
   );
