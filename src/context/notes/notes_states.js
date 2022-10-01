@@ -16,20 +16,12 @@ const Note_state = (props) => {
     //     }, 2000);
     // }
     const initial_notes=[
-        {
-          "_id": "6335a4c197dd6658dd24405e",
-          "user": "6334830b2470e652f4b25f7e",
-          "title": "Pro Tip",
-          "description": "wake up early, it increases your productivity",
-          "tag": "personal",
-          "date": "2022-09-29T13:59:29.304Z",
-          "__v": 0
-        },
+      
         {
           "_id": "6335a4d297dd6658dd244060",
           "user": "6334830b2470e652f4b25f7e",
           "title": "Pro Tip",
-          "description": "wake up early, it increases your productivity",
+          "description": "wake up early, it increases your productivity. Maintain a healthy routine and live a healthy life",
           "tag": "personal",
           "date": "2022-09-29T13:59:46.139Z",
           "__v": 0
@@ -38,7 +30,7 @@ const Note_state = (props) => {
           "_id": "6335a4d297dd6658dd244060",
           "user": "6334830b2470e652f4b25f7e",
           "title": "Pro Tip",
-          "description": "wake up early, it increases your productivity",
+          "description": "wake up early, it increases your productivity. Read some books and enjoy your coffee",
           "tag": "personal",
           "date": "2022-09-29T13:59:46.139Z",
           "__v": 0
@@ -47,7 +39,7 @@ const Note_state = (props) => {
           "_id": "6335a4d297dd6658dd244060",
           "user": "6334830b2470e652f4b25f7e",
           "title": "Pro Tip",
-          "description": "wake up early, it increases your productivity",
+          "description": "wake up early, it increases your productivity. binge watch some kdramas and eat ramen",
           "tag": "personal",
           "date": "2022-09-29T13:59:46.139Z",
           "__v": 0

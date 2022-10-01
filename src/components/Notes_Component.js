@@ -13,9 +13,9 @@ const Notes_Component = () => {
     <>
 
       <div>
-        <h3 className="my-3">Your Notes</h3>
+        <h3>Your Notes</h3>
 
-        <div className="row gx-5">
+        <div className="row">
           {notes.map((note) => {
             return <NoteItem note={note} />
           })}

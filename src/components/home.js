@@ -10,9 +10,9 @@ export default function Home() {
 
   return (
     <>
-      <div className="container">
+      <div className="container my-3">
         <h2 className="my-3">Add a Note</h2>
-        <form>
+        <form className="my-3">
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label" >
               Email address
