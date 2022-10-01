@@ -1,15 +1,12 @@
 import React from "react";
-import { useContext } from "react";
-import note_context from "../context/notes/notes_Context";
-export default function Home() {
+import Notes_Component from "./Notes_Component";
 
-  const context = useContext(note_context)
-  const { notes, setnotes } = context
+
+export default function Home() {
 
   const mystile = {
     width: "60%"
   }
-
 
   return (
     <>
@@ -61,12 +58,8 @@ export default function Home() {
           </button>
         </form>
       </div>
-      <h3 className="my-3">Your Notes</h3>
-      <div className="container">
-        {notes.map((note) => {
-          return note.title;
-        })}
-      </div>
+      <Notes_Component/>
+      
     </>
   );
 }
