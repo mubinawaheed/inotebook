@@ -20,7 +20,7 @@ const Note_state = (props) => {
         {
           "_id": "6335a4d297dd6658dd24460",
           "user": "6334830b2470e652f4b25f7e",
-          "title": "Pro Tip",
+          "title": "Note number 1",
           "description": "wake up early, it increases your productivity. Maintain a healthy routine and live a healthy life",
           "tag": "personal",
           "date": "2022-09-29T13:59:46.139Z",
@@ -29,7 +29,7 @@ const Note_state = (props) => {
         {
           "_id": "6335a4d297dd6658d24060",
           "user": "6334830b2470e652f4b25f7e",
-          "title": "Pro Tip",
+          "title": "Note number 2",
           "description": "wake up early, it increases your productivity. Read some books and enjoy your coffee",
           "tag": "personal",
           "date": "2022-09-29T13:59:46.139Z",
@@ -38,7 +38,7 @@ const Note_state = (props) => {
         {
           "_id": "6335a4d297dd6658dd2406",
           "user": "6334830b2470e652f4b25f7e",
-          "title": "Pro Tip",
+          "title": "Note number 3",
           "description": "wake up early, it increases your productivity. binge watch some kdramas and eat ramen",
           "tag": "personal",
           "date": "2022-09-29T13:59:46.139Z",
@@ -64,12 +64,16 @@ const Note_state = (props) => {
       }
 
       //delete note
-      const deletenote=()=>{
-
+      const deletenote=(id)=>{
+        console.log('deleting'+id)
+        const newnotes=notes.filter((note)=>{
+            return note._id!==id
+        })
+        setnotes(newnotes)
       }
 
       // update note
-      const updatenote=()=>{
+      const updatenote=(title, tag, description, id)=>{
 
       }
 

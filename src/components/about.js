@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import note_context from '../context/notes/notes_Context'
+// import note_context from '../context/notes/notes_Context'
 
 
 export default function About() {

@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import note_context from '../context/notes/notes_Context';
 
 
 const NoteItem = (props) => {
+
+    const context = useContext(note_context)
+    const { deletenote } = context
 
     const { title, description, date } = props.note
     const stile = {
@@ -17,28 +21,19 @@ const NoteItem = (props) => {
     const [iconstyle, seticon] = useState(icon)
     const [disable, setdisable] = useState(false)
 
-    const enable = () => {
-        setdisable({
-            disabled: false
-        })
-       
-        seticon({
-            cursor: 'pointer',
-            fontSize: "1.5rem"
-        })
-    }
-    const f =  () => {
+
+    const handledelete = (id) => {
+
         seticon({
             cursor: 'not-allowed',
             fontSize: "1.5rem"
         })
-
         setdisable({
             disabled: true
         })
+        deletenote(id)
 
         toast.success("Deleted", { position: toast.POSITION.TOP_CENTER, autoClose: 1000 })
-                enable()
     }
 
     const newdate = new Date(date);
@@ -55,8 +50,10 @@ const NoteItem = (props) => {
 
                     <button className="btn fa-regular fa-pen-to-square" style={iconstyle}></button>
 
-                    <button className="btn fa-sharp fa-solid fa-trash-can" disabled={disable} 
-                    onClick={f} style={iconstyle}></button>
+                    <button className="btn fa-sharp fa-solid fa-trash-can" disabled={disable}
+                        onClick={() => {
+                            handledelete(props.note._id)
+                        }} style={iconstyle}></button>
 
                     <ToastContainer />
                 </div>
