@@ -18,7 +18,7 @@ const Note_state = (props) => {
     const initial_notes=[
       
         {
-          "_id": "6335a4d297dd6658dd244060",
+          "_id": "6335a4d297dd6658dd24460",
           "user": "6334830b2470e652f4b25f7e",
           "title": "Pro Tip",
           "description": "wake up early, it increases your productivity. Maintain a healthy routine and live a healthy life",
@@ -27,7 +27,7 @@ const Note_state = (props) => {
           "__v": 0
         },
         {
-          "_id": "6335a4d297dd6658dd244060",
+          "_id": "6335a4d297dd6658d24060",
           "user": "6334830b2470e652f4b25f7e",
           "title": "Pro Tip",
           "description": "wake up early, it increases your productivity. Read some books and enjoy your coffee",
@@ -36,7 +36,7 @@ const Note_state = (props) => {
           "__v": 0
         },
         {
-          "_id": "6335a4d297dd6658dd244060",
+          "_id": "6335a4d297dd6658dd2406",
           "user": "6334830b2470e652f4b25f7e",
           "title": "Pro Tip",
           "description": "wake up early, it increases your productivity. binge watch some kdramas and eat ramen",
