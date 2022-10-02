@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 const NoteItem = (props) => {
 
@@ -9,33 +10,58 @@ const NoteItem = (props) => {
         width: "18rem"
     }
     const icon = {
-        cursor:"pointer",
-        fontSize: "1.5rem"
-    }
-  
-    const f = () => {
+        cursor: "pointer",
+        fontSize: "1.5rem",
 
-        document.getElementById("deletebtn").cursor='none';
-        
-        toast.success("Deleted", { position: toast.POSITION.TOP_CENTER, autoClose:2000 })
-        document.getElementById("deletebtn").cursor="pointer";
+    }
+    const [iconstyle, seticon] = useState(icon)
+    const [disable, setdisable] = useState(false)
+
+    const enable = () => {
+        setdisable({
+            disabled: false
+        })
+       
+        seticon({
+            cursor: 'pointer',
+            fontSize: "1.5rem"
+        })
+    }
+    const f =  () => {
+        seticon({
+            cursor: 'not-allowed',
+            fontSize: "1.5rem"
+        })
+
+        setdisable({
+            disabled: true
+        })
+
+        toast.success("Deleted", { position: toast.POSITION.TOP_CENTER, autoClose: 1000 })
+                enable()
     }
 
     const newdate = new Date(date);
-    
+
     return (
         <div className='col-md-3 mx-3 my-3'>
             <div className="card my-2" style={stile}>
                 <div className="card-body">
                     <h5 className="card-title">{title}</h5><hr />
+
                     <h6 className="card-subtitle mb-2 text-muted">{newdate.toISOString().replace(/T/, ' ').replace(/\..+/, '')}</h6>
+
                     <p className="my-3 card-text">{description}</p>
-                    <i className="mx-2 fa-regular fa-pen-to-square" style={icon}></i>
-                    <i className="mx-2 my-2 fa-sharp fa-solid fa-trash-can" id="deletebtn" onClick={f} style={icon}></i>
-                    <ToastContainer/>
+
+                    <button className="btn fa-regular fa-pen-to-square" style={iconstyle}></button>
+
+                    <button className="btn fa-sharp fa-solid fa-trash-can" disabled={disable} 
+                    onClick={f} style={iconstyle}></button>
+
+                    <ToastContainer />
                 </div>
             </div>
-            
+
         </div>
     )
 }

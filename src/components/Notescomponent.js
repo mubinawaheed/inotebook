@@ -7,11 +7,10 @@ import NoteItem from './NoteItem'
 const Notes_Component = () => {
 
   const context = useContext(note_context)
-  const { notes, setnotes } = context
+  const { notes, addnote } = context
 
   return (
     <>
-
       <div>
         <h3>Your Notes</h3>
 
