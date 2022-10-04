@@ -14,9 +14,9 @@ body('name', 'enter valid name').isLength({ min: 3 }), body('password').isLength
 
     JWT_secretkey = 'we were on a break';
     req.body = {
-        name: "Saar",
-        email: "salar11@gmail.com",
-        password: "salar171"
+        name: "hamzakhan",
+        email: "hamza77@gmail.com",
+        password: "helloo122"
     }
 
     const errors = validationResult(req.body);
@@ -86,7 +86,7 @@ router.get('/login', [body('email', "enter a valid email").isEmail(), body('pass
             }
         }
         const authtoken = jwt.sign(payload, JWT_secretkey);
-        res.json({ auth_token: authtoken, name: user.name, message: "Logged in successfully" })
+        return res.json({ auth_token: authtoken, name: user.name, message: "Logged in successfully" })
         // next()
     } catch (error) {
         console.error(error.message)
@@ -100,7 +100,7 @@ router.get('/login', [body('email', "enter a valid email").isEmail(), body('pass
 router.get('/getuser', fetchuser, async (req, res) => {
 
     try {
-        const userid = req.user.id;
+        const userid = req.user._id;
         const user = await User.findById(userid).select('-password')
         return res.json(user)
 

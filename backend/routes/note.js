@@ -23,18 +23,18 @@ router.get('/fetchnotes', fetchuser, async(req, res) => {
 
 
 //route for adding notes
-router.get('/addnotes', fetchuser, [body('title', 'title cannot be empty').isLength({
+router.post('/addnotes', fetchuser, [body('title', 'title cannot be empty').isLength({
         min: 3
     }),
     body('description', 'enter correct descriptiion').isLength({
         min: 5
     })
 ], async(req, res) => {
-    req.body = {
-        title: "Pro Tip",
-        description: "wake up early, it increases your productivity",
-        tag: "personal"
-    }
+    // req.body = {
+    //     title: "Pro Tip",
+    //     description: "wake up early, it increases your productivity",
+    //     tag: "personal"
+    // }
     try {
 
         const {
@@ -67,11 +67,12 @@ router.get('/addnotes', fetchuser, [body('title', 'title cannot be empty').isLen
 
 router.get('/updatenote/:id', fetchuser, async(req, res) => {
     try {
-        req.body = {
-            title: "New Pro Tip",
-            description: "wake up early, it increases your productivity [updated",
-            tag: "personal note"
-        }
+        //the contents of body will be directly fetched from the page
+        // req.body = {
+        //     title: "New Pro Tip",
+        //     description: "wake up early, it increases your productivity [updated",
+        //     tag: "personal note"
+        // }
         const {title, description,tag} = req.body
 
         const newnote = {};

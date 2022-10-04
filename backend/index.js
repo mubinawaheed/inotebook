@@ -6,14 +6,14 @@ const app = express();
 const port = 5500;
 const authroute = require('./routes/auth')
 const notesroute = require('./routes/note')
-
-//post request requires an additional middle ware that is body parser
+const cors = require('cors')
+    //post request requires an additional middle ware that is body parser
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
-//middleware
+app.use(cors())
+    //middleware
 app.use(express.json());
 app.get('/hello', (req, res) => {
     res.send('Hello World!')

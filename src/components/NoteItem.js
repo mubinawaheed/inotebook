@@ -48,7 +48,9 @@ const NoteItem = (props) => {
 
                     <p className="my-3 card-text">{description}</p>
 
-                    <button className="btn fa-regular fa-pen-to-square" style={iconstyle}></button>
+                    <button className="btn fa-regular fa-pen-to-square" onClick={()=>{
+                        props.updatenote(props.note)
+                    }} style={iconstyle}></button>
 
                     <button className="btn fa-sharp fa-solid fa-trash-can" disabled={disable}
                         onClick={() => {
