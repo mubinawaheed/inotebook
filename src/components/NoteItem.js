@@ -33,7 +33,7 @@ const NoteItem = (props) => {
         })
         deletenote(id)
 
-        toast.success("Deleted", { position: toast.POSITION.TOP_CENTER, autoClose: 1000 })
+        toast.success("Deleted", { position: toast.POSITION.TOP_CENTER, autoClose: 500 })
     }
 
     const newdate = new Date(date);

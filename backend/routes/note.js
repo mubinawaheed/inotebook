@@ -72,11 +72,7 @@ router.get('/updatenote/:id', fetchuser, async(req, res) => {
             description: "wake up early, it increases your productivity [updated",
             tag: "personal note"
         }
-        const {
-            title,
-            description,
-            tag
-        } = req.body
+        const {title, description,tag} = req.body
 
         const newnote = {};
         if (title) {
