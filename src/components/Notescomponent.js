@@ -10,33 +10,34 @@ const Notes_Component = () => {
   const mystile = {
     width: "70%"
   }
-  const [note, setnote] = useState({ etitle: '', edescription: '', etag: '' })
+  const [note, setnote] = useState({etitle: '', etag: '',edescription: '', id: "" })
 
   const context = useContext(note_context)
-  const { notes, getnotes } = context
+  const { notes, getnotes, EditNote } = context
+  
 
-  const handleclick = (e) => {
-    e.preventDefault()
-    // addnote(note.title,  note.tag,note.description)
+  //for save changes button
+  const refClose = useRef('')
+  const handleclick =  () => {
+    EditNote(note.etitle, note.etag, note.edescription, note.id)
+    refClose.current.click()
   }
 
   const OnChange = (e) => {
     setnote({ ...note, [e.target.name]: e.target.value })
   }
 
+
+  // to fill the contents of modal
+  const ref = useRef('')
+  const updatenote = (currentote) => {
+    ref.current.click()
+    setnote({ id: currentote._id, etitle: currentote.title, edescription: currentote.description, etag: currentote.tag })
+  }
   useEffect(() => {
     getnotes()
     // eslint-disable-next-line
   }, [])
-
-
-  const updatenote = (currentote) => {
-    ref.current.click()
-    setnote({ etitle: currentote.title, edescription: currentote.description, etag: currentote.tag })
-  }
-  const ref = useRef('')
-
-
   return (
     <>
       <div>
@@ -74,7 +75,7 @@ const Notes_Component = () => {
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" onClick={handleclick} className="btn btn-primary">Save changes</button>
               </div>
             </div>

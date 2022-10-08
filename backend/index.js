@@ -9,9 +9,9 @@ const notesroute = require('./routes/note')
 const cors = require('cors')
     //post request requires an additional middle ware that is body parser
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+    // app.use(bodyParser.urlencoded({
+    //     extended: true
+    // }));
 app.use(cors())
     //middleware
 app.use(express.json());
@@ -22,6 +22,7 @@ app.get('/hello', (req, res) => {
 //available routes
 app.use('/api/auth', authroute)
 app.use('/api/notes', notesroute)
+app.use('api/notes/updatenote/:id', require("./routes/note"))
 
 
 app.listen(port, () => {

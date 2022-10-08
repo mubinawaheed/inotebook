@@ -11,9 +11,9 @@ const {
 router.get('/fetchnotes', fetchuser, async(req, res) => {
     try {
         const notes = await Notes.find({
-            user: req.user.id
-        })
-        console.log(notes)
+                user: req.user.id
+            })
+            // console.log(notes)
         res.json(notes)
     } catch (error) {
         console.error(error.message)
@@ -57,7 +57,7 @@ router.post('/addnotes', fetchuser, [body('title', 'title cannot be empty').isLe
 
     } catch (error) {
         console.error(error.message)
-        res.status(500).send("Some error occured")
+        res.status(401).send("some error occured")
     }
 });
 
@@ -65,16 +65,16 @@ router.post('/addnotes', fetchuser, [body('title', 'title cannot be empty').isLe
 
 //add route for updating note
 
-router.get('/updatenote/:id', fetchuser, async(req, res) => {
+router.post('/updatenote/:id', fetchuser, async (req, res) => {
     try {
-        //the contents of body will be directly fetched from the page
+        // the contents of body will be directly fetched from the page
         // req.body = {
         //     title: "New Pro Tip",
         //     description: "wake up early, it increases your productivity [updated",
         //     tag: "personal note"
         // }
-        const {title, description,tag} = req.body
-
+        const { title, tag, description } = req.body
+        
         const newnote = {};
         if (title) {
             newnote.title = title
@@ -85,21 +85,25 @@ router.get('/updatenote/:id', fetchuser, async(req, res) => {
         if (description) {
             newnote.description = description
         }
+        console.log(title, description, tag)
+        console.log("req.params.id",req.params.id)
         //find the note to be updated
+
         let updated_note = await Notes.findById(req.params.id)
+        console.log("updated note-----------------------------------", updated_note)
 
         if (!updated_note) {
-            return res.status(404).send("Note not found")
+            return res.status(404).json("Note not found")
         }
         if (updated_note.user.toString() !== req.user.id) {
-            return res.status(404).send("unauthorized user")
+            return res.status(404).json("unauthorized user")
         }
         updated_note = await Notes.findByIdAndUpdate(req.params.id, { $set: newnote }, { new: true })
-        res.json(updated_note)
+        return res.json(updated_note)
 
     } catch (error) {
         console.error(error.message)
-        res.status(500).send("Some error occured")
+        return res.status(500).json("error occured")
     }
 });
 
@@ -107,14 +111,10 @@ router.get('/updatenote/:id', fetchuser, async(req, res) => {
 //route for deleting a note:
 router.get("/deletenote/:id", fetchuser, async(req, res) => {
     try {
-        req.body = {
-            title: "New Pro Tip",
-            description: "wake up early, it increases your productivity [updated",
-            tag: "personal note"
-        }
-
+       
         //finding the note to be deleted
         let note = await Notes.findById(req.params.id)
+        console.log(req.params.id, "deleting node")
 
         if (!note) {
             return res.status(404).send("no note to be deleted")
@@ -130,7 +130,7 @@ router.get("/deletenote/:id", fetchuser, async(req, res) => {
 
     } catch (error) {
         console.error(error.message)
-        res.status(500).send("Some error occured")
+        res.status(500).send("error occured")
     }
 })
 module.exports = router;

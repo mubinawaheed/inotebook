@@ -9,8 +9,8 @@ const { body, validationResult } = require('express-validator');
 
 //writing checks in the form of array, creating a user
 router.get('/createuser', [body('email', 'enter valid email').isEmail(),
-body('name', 'enter valid name').isLength({ min: 3 }), body('password').isLength({ min: 5 })
-], async (req, res) => {
+    body('name', 'enter valid name').isLength({ min: 3 }), body('password').isLength({ min: 5 })
+], async(req, res) => {
 
     JWT_secretkey = 'we were on a break';
     req.body = {
@@ -54,14 +54,14 @@ body('name', 'enter valid name').isLength({ min: 3 }), body('password').isLength
 });
 
 //authenticating a user
-router.get('/login', [body('email', "enter a valid email").isEmail(), body('password', 'password cannot be blank').exists()], async (req, res, next) => {
+router.post('/login', [body('email', "enter a valid email").isEmail(), body('password', 'password cannot be blank').exists()], async(req, res, next) => {
     try {
         JWT_secretkey = 'we were on a break';
 
-        req.body = {
-            email: "hina@gmail.com",
-            password: "hina76"
-        }
+        // req.body = {
+        //     email: "hina@gmail.com",
+        //     password: "hina76"
+        // }
         const login_errors = validationResult(req.body);
         if (!login_errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -87,7 +87,7 @@ router.get('/login', [body('email', "enter a valid email").isEmail(), body('pass
         }
         const authtoken = jwt.sign(payload, JWT_secretkey);
         return res.json({ auth_token: authtoken, name: user.name, message: "Logged in successfully" })
-        // next()
+            // next()
     } catch (error) {
         console.error(error.message)
         res.status(500).send("Some error occured")
@@ -97,7 +97,7 @@ router.get('/login', [body('email', "enter a valid email").isEmail(), body('pass
 //get logged in user details
 
 //fetchuser is a middleware; it is used wherever login is required, after successful completion of fectuser function the next function function after that runs
-router.get('/getuser', fetchuser, async (req, res) => {
+router.get('/getuser', fetchuser, async(req, res) => {
 
     try {
         const userid = req.user._id;
