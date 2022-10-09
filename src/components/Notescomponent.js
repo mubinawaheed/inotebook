@@ -10,15 +10,15 @@ const Notes_Component = () => {
   const mystile = {
     width: "70%"
   }
-  const [note, setnote] = useState({etitle: '', etag: '',edescription: '', id: "" })
+  const [note, setnote] = useState({ etitle: '', etag: '', edescription: '', id: "" })
 
   const context = useContext(note_context)
   const { notes, getnotes, EditNote } = context
-  
+
 
   //for save changes button
   const refClose = useRef('')
-  const handleclick =  () => {
+  const handleclick = (e) => {
     EditNote(note.etitle, note.etag, note.edescription, note.id)
     refClose.current.click()
   }
@@ -27,13 +27,13 @@ const Notes_Component = () => {
     setnote({ ...note, [e.target.name]: e.target.value })
   }
 
-
   // to fill the contents of modal
   const ref = useRef('')
   const updatenote = (currentote) => {
     ref.current.click()
     setnote({ id: currentote._id, etitle: currentote.title, edescription: currentote.description, etag: currentote.tag })
   }
+
   useEffect(() => {
     getnotes()
     // eslint-disable-next-line
@@ -44,7 +44,8 @@ const Notes_Component = () => {
         <button type="button" className="btn btn-primary d-none" ref={ref} data-bs-toggle="modal" data-bs-target="#exampleModal">
           Launch demo modal
         </button>
-        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="exampleModal" tabIndex="-1" 
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
@@ -83,7 +84,6 @@ const Notes_Component = () => {
         </div>
 
         <h3>Your Notes</h3>
-
         <div className="row">
           {notes.map((note) => {
             return <NoteItem key={note._id} note={note} updatenote={updatenote} />

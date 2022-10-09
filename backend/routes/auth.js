@@ -6,18 +6,19 @@ const jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser')
 
 const { body, validationResult } = require('express-validator');
+const { Document } = require('mongoose');
 
 //writing checks in the form of array, creating a user
-router.get('/createuser', [body('email', 'enter valid email').isEmail(),
+router.post('/createuser', [body('email', 'enter valid email').isEmail(),
     body('name', 'enter valid name').isLength({ min: 3 }), body('password').isLength({ min: 5 })
 ], async(req, res) => {
-
+    let success = false;
     JWT_secretkey = 'we were on a break';
-    req.body = {
-        name: "hamzakhan",
-        email: "hamza77@gmail.com",
-        password: "helloo122"
-    }
+    // req.body = {
+    //     name: "hamzakhan",
+    //     email: "hamza77@gmail.com",
+    //     password: "helloo122"
+    // }
 
     const errors = validationResult(req.body);
     if (!errors.isEmpty()) {
@@ -27,7 +28,7 @@ router.get('/createuser', [body('email', 'enter valid email').isEmail(),
 
         let user = await User.findOne({ email: req.body.email })
         if (user) {
-            return res.status(400).json({ error: "email already exists" })
+            return res.status(400).json({ error: "email already exists", success: success })
         }
 
         const salt = await bcrypt.genSalt(10)
@@ -44,12 +45,13 @@ router.get('/createuser', [body('email', 'enter valid email').isEmail(),
             }
         }
         const authtoken = jwt.sign(data, JWT_secretkey);
-        console.log(authtoken)
-        return res.json({ auth_token: authtoken, user: user })
+        success = true;
+        console.log(user, success)
+        return res.json({ auth_token: authtoken, user: user, success: success })
 
     } catch (error) {
         console.error(error.message)
-        return res.status(500).send("Some error occured")
+        return res.status(500).json("Some error occured")
     }
 });
 
@@ -57,6 +59,7 @@ router.get('/createuser', [body('email', 'enter valid email').isEmail(),
 router.post('/login', [body('email', "enter a valid email").isEmail(), body('password', 'password cannot be blank').exists()], async(req, res, next) => {
     try {
         JWT_secretkey = 'we were on a break';
+        let success = false;
 
         // req.body = {
         //     email: "hina@gmail.com",
@@ -72,12 +75,11 @@ router.post('/login', [body('email', "enter a valid email").isEmail(), body('pas
 
         let user = await User.findOne({ email });
         if (!user) {
-            console.log("in line 83")
-            return res.status(400).json({ error: "Enter correct credentials" })
+            return res.status(400).json({ error: "Enter correct credentials", success: success })
         }
         const password_Compare = await bcrypt.compare(password, user.password)
         if (!password_Compare) {
-            return res.status(400).json({ error: "Enter correct credentials" })
+            return res.status(400).json({ error: "Enter correct credentials", success: success })
 
         }
         const payload = {
@@ -86,11 +88,12 @@ router.post('/login', [body('email', "enter a valid email").isEmail(), body('pas
             }
         }
         const authtoken = jwt.sign(payload, JWT_secretkey);
-        return res.json({ auth_token: authtoken, name: user.name, message: "Logged in successfully" })
-            // next()
+        success = true
+        return res.json({ auth_token: authtoken, name: user.name, message: "Logged in successfully", success: success })
+
     } catch (error) {
         console.error(error.message)
-        res.status(500).send("Some error occured")
+        res.status(500).json("Some error occured")
     }
 });
 
@@ -107,7 +110,7 @@ router.get('/getuser', fetchuser, async(req, res) => {
     } catch (error) {
 
         console.error(error.message)
-        return res.status(500).send("Some error occured")
+        return res.status(500).json("Some error occured")
     }
 })
 module.exports = router;

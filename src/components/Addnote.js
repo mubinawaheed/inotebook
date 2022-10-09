@@ -14,6 +14,7 @@ const Addnote = () => {
     const handleclick = (e) => {
         e.preventDefault()
         addnote(note.title,  note.tag,note.description)
+        setnote({ title: '', description: '', tag: '' })
     }
 
     const OnChange = (e) => {
@@ -24,7 +25,7 @@ const Addnote = () => {
         <>
             <div className="container my-3">
                 <h2 className="my-3">Add a Note</h2>
-                <form className="my-3">
+                <form className="my-3" autoComplete='new-password'>
                     <div className="mb-3">
                         <label htmlFor="title" className="form-label" >
                             Title
@@ -32,10 +33,12 @@ const Addnote = () => {
                         <input
                             style={mystile}
                             type="text"
+                            required
                             className="form-control"
                             id="title"
                             name='title'
                             onChange={OnChange}
+                            value={note.title}
                         />
 
                     </div>
@@ -47,8 +50,10 @@ const Addnote = () => {
 
                             style={mystile}
                             type="text"
+                            required
                             className="form-control"
                             id="description"
+                            value={note.description}
                             name='description'
                             onChange={OnChange}
                         />
@@ -62,6 +67,8 @@ const Addnote = () => {
                             type="text"
                             className="form-control"
                             id="tag"
+                            value={note.tag}
+                            required
                             name='tag'
                             onChange={OnChange}
                         />

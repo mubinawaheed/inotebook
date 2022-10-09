@@ -22,7 +22,7 @@ app.get('/hello', (req, res) => {
 //available routes
 app.use('/api/auth', authroute)
 app.use('/api/notes', notesroute)
-app.use('api/notes/updatenote/:id', require("./routes/note"))
+    // app.use('api/notes/updatenote/:id', require("./routes/note"))
 
 
 app.listen(port, () => {
