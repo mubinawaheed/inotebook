@@ -1,13 +1,22 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
 
 export default function Navbar() {
+
+const  navigate=useNavigate()
+
   let location = useLocation()
 
   useEffect(() => {
   }, [location]);
+
+  const logout=()=>{
+    localStorage.removeItem('token')
+    navigate('/login')
+
+  }
 
   return (
     <>
@@ -16,7 +25,7 @@ export default function Navbar() {
           <div className="container-fluid">
 
             <Link className="navbar-brand" to="/"><strong> iNotebook</strong></Link>
-            
+
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -25,21 +34,22 @@ export default function Navbar() {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li className="nav-item">
-                  <Link className={`nav-link ${location.pathname==="/"?"active":""}`} to="/" aria-current="page">Home</Link>
+                  <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} to="/" aria-current="page">Home</Link>
                 </li>
 
                 <li className="nav-item">
-                  <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about">About</Link>
+                  <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">Personal Info</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className={`nav-link ${location.pathname==="/notes"?"active":""}`} to="/notes">Your Notes</Link>
+                  <Link className={`nav-link ${location.pathname === "/Notes" ? "active" : ""}`} to="/Notescomponent">Your Notes</Link>
                 </li>
 
 
               </ul>
-
+              {!localStorage.getItem('token')? <form>
                 <Link className="btn btn-outline-primary mx-1" to="/login">Login</Link>
                 <Link className="btn btn-outline-primary mx-1" to="/signup" >Signup</Link>
+              </form>: <button onClick={logout} className='btn btn-primary mx-3 pb-2'>Logout</button>}
 
             </div>
           </div>

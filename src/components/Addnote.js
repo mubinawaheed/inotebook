@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import { useContext } from 'react'
 import note_context from '../context/notes/notes_Context'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Addnote = () => {
     const mystile = {
@@ -15,6 +17,8 @@ const Addnote = () => {
         e.preventDefault()
         addnote(note.title,  note.tag,note.description)
         setnote({ title: '', description: '', tag: '' })
+        toast.success("Note Added", { position: toast.POSITION.TOP_CENTER, autoClose: 500 })
+        
     }
 
     const OnChange = (e) => {
@@ -78,6 +82,7 @@ const Addnote = () => {
                     <button type="submit" onClick={handleclick} className="btn btn-primary">
                         Add Note
                     </button>
+                    <ToastContainer/>
                 </form>
             </div>
         </>

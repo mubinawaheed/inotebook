@@ -12,8 +12,11 @@ import About from './components/about'
 import Login from './components/login'
 import Signup from './components/signup'
 import Note_state from './context/notes/notes_states';
+import Notes_Component from "./components/Notescomponent";
+
 
 function App() {
+
   return (
     <>
     <Note_state>
@@ -27,6 +30,7 @@ function App() {
           <Route exact path="/about" element={<About/>}></Route>
 
           <Route exact path="/" element={<Home/>}></Route>
+          <Route exact path="/Notescomponent" element={<Notes_Component/>}></Route>
           <Route exact path="/login" element={<Login/>}></Route>
           <Route exact path="/signup" element={<Signup/>}></Route>
 

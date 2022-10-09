@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
-// import note_context from '../context/notes/notes_Context'
+import { useState } from 'react';
+import note_context from '../context/notes/notes_Context'
 
 
 export default function About() {
@@ -11,10 +12,35 @@ export default function About() {
 
   // },[])
 
+  const host = "http://localhost:5500"
+  const { userdetails, setdetails } = useState([])
+
+
+  const GetUserDetails = async () => {
+    const response = await fetch(`${host}/api/auth/getuser`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth_token': localStorage.getItem('token')
+      },
+    });
+    const json = await response.json()
+    console.log(json)
+    // setdetails(json)
+  }
+
+  GetUserDetails()
   return (
 
     <div >
-      {/* about {a.state.name} */}
+      <h2 className="container text-center my-2">Your Personal Info</h2>
+
+      {/* <h3>Username</h3> */}
+      <span>{userdetails.uname}</span>
+
+      {/* <h3>EmailAddress</h3> */}
+      <span>{userdetails.email}</span>
+
     </div>
   )
 }

@@ -52,7 +52,7 @@ router.post('/addnotes', fetchuser, [body('title', 'title cannot be empty').isLe
         const note = new Notes({ title, description, tag, user: req.user.id })
         const savedNote = await note.save()
 
-        console.log(savedNote)
+        // console.log(savedNote)
         res.json(savedNote)
 
     } catch (error) {
@@ -85,8 +85,8 @@ router.post('/updatenote/:id', fetchuser, async (req, res) => {
         if (description) {
             newnote.description = description
         }
-        console.log(title, description, tag)
-        console.log("req.params.id",req.params.id)
+        // console.log(title, description, tag)
+        // console.log("req.params.id",req.params.id)
         //find the note to be updated
 
         let updated_note = await Notes.findById(req.params.id)

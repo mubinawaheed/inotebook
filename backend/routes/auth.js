@@ -46,7 +46,7 @@ router.post('/createuser', [body('email', 'enter valid email').isEmail(),
         }
         const authtoken = jwt.sign(data, JWT_secretkey);
         success = true;
-        console.log(user, success)
+        // console.log(user, success)
         return res.json({ auth_token: authtoken, user: user, success: success })
 
     } catch (error) {
@@ -71,7 +71,7 @@ router.post('/login', [body('email', "enter a valid email").isEmail(), body('pas
         }
         const email = req.body.email;
         const password = req.body.password;
-        console.log(email, password)
+        // console.log(email, password)
 
         let user = await User.findOne({ email });
         if (!user) {
@@ -103,9 +103,10 @@ router.post('/login', [body('email', "enter a valid email").isEmail(), body('pas
 router.get('/getuser', fetchuser, async(req, res) => {
 
     try {
-        const userid = req.user._id;
+        const userid = req.user.id;
+        // console.log(userid)
         const user = await User.findById(userid).select('-password')
-        return res.json(user)
+        return res.send(user)
 
     } catch (error) {
 

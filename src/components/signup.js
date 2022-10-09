@@ -52,6 +52,7 @@ const Signup = () => {
       <div className="container my-3 d-flex justify-content-center">
 
         <form className='my-3' onSubmit={signin} autoComplete="off">
+        <h2 className="mb-3 mx-3">Create Account</h2>
 
           <div className="mb-3">
             <label htmlFor="email" className="form-label">Email address</label>
@@ -79,7 +80,8 @@ const Signup = () => {
               type="password" className="form-control" onChange={onchange} name='cpassword' id="cpassword" />
           </div>
 
-          <button style={{ margin: "auto", display: "block" }} type="submit" className="btn btn-primary">Create Account</button>
+          <button style={{ margin: "auto", display: "block" }} type="submit" className="btn btn-primary">
+            Register</button>
           <ToastContainer />
         </form>
 

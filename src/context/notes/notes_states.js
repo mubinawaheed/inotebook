@@ -13,21 +13,19 @@ const Note_state = (props) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'auth_token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzNDgzMGIyNDcwZTY1MmY0YjI1ZjdlIn0sImlhdCI6MTY2NDg4MTcyOH0.TZQkrWQzLXO6_TRsD1VcAz9dftQb9fgcg0r4Hl1BNUE"
-      },
+        'auth_token': localStorage.getItem('token')},
     });
     const json = await response.json()
     setnotes(json)
   }
-
+ 
   //add a note
   const addnote = async (title, tag, description) => {
     const response = await fetch(`${host}/api/notes/addnotes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth_token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzNDgzMGIyNDcwZTY1MmY0YjI1ZjdlIn0sImlhdCI6MTY2NDg4MTcyOH0.TZQkrWQzLXO6_TRsD1VcAz9dftQb9fgcg0r4Hl1BNUE"
-      },
+        'auth_token': localStorage.getItem('token')},
       body: JSON.stringify({ title, tag, description })
     });
     const json = await response.json();
@@ -42,8 +40,7 @@ const Note_state = (props) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'auth_token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzNDgzMGIyNDcwZTY1MmY0YjI1ZjdlIn0sImlhdCI6MTY2NDg4MTcyOH0.TZQkrWQzLXO6_TRsD1VcAz9dftQb9fgcg0r4Hl1BNUE"
-      },
+        'auth_token': localStorage.getItem('token')},
       // body: JSON.stringify({title, tag, description})
     });
     const json = await response.json();
@@ -63,8 +60,7 @@ const Note_state = (props) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth_token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzNDgzMGIyNDcwZTY1MmY0YjI1ZjdlIn0sImlhdCI6MTY2NDg4MTcyOH0.TZQkrWQzLXO6_TRsD1VcAz9dftQb9fgcg0r4Hl1BNUE"
-        
+        'auth_token': localStorage.getItem('token')  
       },
       body: JSON.stringify({ title, tag, description, id })
     });
