@@ -17,3 +17,6 @@ jobs:
         run: ls
       - name: Installing dependencies
         run:  npm install
+        
+      - name: testing the actual file
+        run:  npm start
