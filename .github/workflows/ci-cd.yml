@@ -12,7 +12,7 @@ jobs:
       - name: checck code
         uses: actions/checkout@v3
       - name: setting node version
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v16.17.0
       - name: Listing files in the directory
         run: ls
       - name: Installing dependencies
