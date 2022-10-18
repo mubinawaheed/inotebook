@@ -7,16 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "checking out repository code"
-
       - name: checck code
         uses: actions/checkout@v3
-        
       - name: setting node version
         uses: actions/setup-node@v3
-
-
       - name: Listing files in the directory
       - run: ls
-
       - name: Installing dependencies
       - run:  npm install
