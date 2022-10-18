@@ -14,7 +14,6 @@ const fetchuser = (req, res, next) => {
     try {
         JWT_secretkey = 'we were on a break';
         const data = jwt.verify(token, JWT_secretkey);
-        // console.log("this is data", data.user)
         req.user = data.user;
 
     } catch (error) {
