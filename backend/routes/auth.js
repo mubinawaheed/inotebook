@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser')
 
 const { body, validationResult } = require('express-validator');
-const { Document } = require('mongoose');
 
 //writing checks in the form of array, creating a user
 router.post('/createuser', [body('email', 'enter valid email').isEmail(),
@@ -46,7 +45,7 @@ router.post('/createuser', [body('email', 'enter valid email').isEmail(),
         }
         const authtoken = jwt.sign(data, JWT_secretkey);
         success = true;
-        // console.log(user, success)
+        console.log(user, success)
         return res.json({ auth_token: authtoken, user: user, success: success })
 
     } catch (error) {
@@ -84,7 +83,7 @@ router.post('/login', [body('email', "enter a valid email").isEmail(), body('pas
         }
         const payload = {
             user: {
-                id: user._id
+                id: user.id
             }
         }
         const authtoken = jwt.sign(payload, JWT_secretkey);

@@ -1,6 +1,4 @@
-import React, { useContext, useEffect } from 'react'
-import { useState } from 'react';
-import note_context from '../context/notes/notes_Context'
+import { useState,React } from 'react';
 
 
 export default function About() {
@@ -13,7 +11,7 @@ export default function About() {
   // },[])
 
   const host = "http://localhost:5500"
-  const { userdetails, setdetails } = useState([])
+  const  [userdetails, setdetails] = useState({name:'', email:''})
 
 
   const GetUserDetails = async () => {
@@ -25,8 +23,7 @@ export default function About() {
       },
     });
     const json = await response.json()
-    console.log(json)
-    // setdetails(json)
+    setdetails(json)
   }
 
   GetUserDetails()
@@ -35,12 +32,11 @@ export default function About() {
     <div >
       <h2 className="container text-center my-2">Your Personal Info</h2>
 
-      {/* <h3>Username</h3> */}
-      <span>{userdetails.uname}</span>
+       <h4>Username</h4>
+      <div>{userdetails.name}</div>
 
-      {/* <h3>EmailAddress</h3> */}
+      <h4>Email Address</h4>
       <span>{userdetails.email}</span>
-
     </div>
   )
 }

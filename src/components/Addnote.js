@@ -15,9 +15,15 @@ const Addnote = () => {
 
     const handleclick = (e) => {
         e.preventDefault()
-        addnote(note.title,  note.tag,note.description)
+        if(note.title.length>0 ||note.title.length>0 ||note.title.length>0){
+            addnote(note.title,  note.tag,note.description)
+
+            toast.success("Note Added", { position: toast.POSITION.TOP_CENTER, autoClose: 500 })
+        }
+        else{
+            toast.error("Empty note", { position: toast.POSITION.TOP_CENTER, autoClose: 500 })
+        }
         setnote({ title: '', description: '', tag: '' })
-        toast.success("Note Added", { position: toast.POSITION.TOP_CENTER, autoClose: 500 })
         
     }
 
@@ -25,7 +31,6 @@ const Addnote = () => {
         setnote({ ...note, [e.target.name]: e.target.value })
     }
     return (
-
         <>
             <div className="container my-3">
                 <h2 className="my-3">Add a Note</h2>
@@ -42,8 +47,7 @@ const Addnote = () => {
                             id="title"
                             name='title'
                             onChange={OnChange}
-                            value={note.title}
-                        />
+                            value={note.title}/>
 
                     </div>
                     <div className="mb-3">
