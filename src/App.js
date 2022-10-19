@@ -7,12 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import Navbar from './components/Navbar'
-try{
-  import Home from './components/Home'
-}
-catch(error){
-  console.log("home cannot be imported")
-}
+import Home from './components/Home'
 import About from './components/about'
 import Login from './components/login'
 import Signup from './components/signup'
